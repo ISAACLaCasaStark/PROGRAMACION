@@ -15,7 +15,7 @@ public class Tarea1 {
         // Crear la matriz y hacer cálculos
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                mat[i][j] = (int) (Math.random() * 100); // número aleatorio entre 0 y 99
+                mat[i][j] = (int) (Math.random() * 100); 
                 suma = suma + mat[i][j];
 
                 // Verificar si es el mayor número
@@ -53,7 +53,6 @@ public class Tarea1 {
             }
         }
 
-        // Mostrar la matriz
         System.out.println("La matriz es:");
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -62,7 +61,6 @@ public class Tarea1 {
             System.out.println();
         }
 
-        // Mostrar resultados
         System.out.println("Suma total: " + suma);
         System.out.println("Número mayor: " + mayor);
         System.out.println("Veces que aparece el mayor: " + repiteMayor);

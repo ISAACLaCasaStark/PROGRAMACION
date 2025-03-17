@@ -7,7 +7,6 @@ public class Tarea2 {
         // Pedir número de columnas
         System.out.println("Por favor, ingrese cuántas columnas tendrá la matriz:");
         int columnas = scanner.nextInt();
-
         
         int[][] matriz = new int[5][columnas];
 

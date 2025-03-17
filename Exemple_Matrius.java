@@ -6,7 +6,7 @@ public class Exemple_Matrius {
 
         for(int i = 0; i < matriuParells.length; i++) {
             for(int j = 0; j < matriuParells[i].length; j++) {
-                if (i%2 = 0) {
+                if (i%2 == 0) {
                 System.out.print("0");
             }
 
