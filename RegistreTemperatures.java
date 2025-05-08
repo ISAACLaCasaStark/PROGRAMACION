@@ -1,28 +1,23 @@
 import java.util.Scanner;
 
 public class RegistreTemperatures {
-    // Constants
     private static final int MAX_SETMANES = 52;
-
-    // Variables globals
     private int numTemperatures = 0;
     private float[] temperatures = new float[MAX_SETMANES * 7];
 
-    // Mètodes associats al problema general
     public static void main(String[] args) {
         RegistreTemperatures programa = new RegistreTemperatures();
         programa.inici();
     }
 
     public void inici() {
-        boolean running = true;
-        while (running) {
+        boolean continuar = true;
+        while (continuar) {
             mostrarMenu();
-            running = tractarOpcio();
+            continuar = tractarOpcio();
         }
     }
 
-    // Mètodes associats al punt 2
     public void mostrarMenu() {
         System.out.println("1. Registre temperatures setmanals");
         System.out.println("2. Mostrar mitjana");
@@ -35,53 +30,69 @@ public class RegistreTemperatures {
         Scanner scanner = new Scanner(System.in);
         int opcio = scanner.nextInt();
 
-        switch (opcio) {
-            case 1:
-                registreTemperaturesSetmanals();
-                return true; // Continúa ejecutando
-            case 2:
-                mostrarMitjana();
-                return true; // Continúa ejecutando
-            case 3:
-                mostrarDiferencia();
-                return true; // Continúa ejecutando
-            case 4:
-                finalitzarExecucio();
-                return false; // Termina la ejecución
-            default:
-                System.out.println("Opció no vàlida. Intenta de nou.");
-                return true; // Continúa ejecutando
+        if (opcio == 1) {
+            registreTemperaturesSetmanals();
+            return true;
+        } else if (opcio == 2) {
+            mostrarMitjana();
+            return true;
+        } else if (opcio == 3) {
+            mostrarDiferencia();
+            return true;
+        } else if (opcio == 4) {
+            finalitzarExecucio();
+            return false;
+        } else {
+            System.out.println("Opció no vàlida.");
+            return true;
         }
     }
 
-    // Mètodes associats al punt 3
     public void registreTemperaturesSetmanals() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Registre de temperatures per a la setmana:");
+        System.out.println("Introdueix les temperatures de la setmana:");
         for (int i = 0; i < 7; i++) {
-            System.out.print("Temperatura del dia " + (i + 1) + ": ");
-            temperatures[numTemperatures++] = scanner.nextFloat();
+            System.out.print("Dia " + (i + 1) + ": ");
+            temperatures[numTemperatures] = scanner.nextFloat();
+            numTemperatures++;
         }
     }
 
     public void mostrarMitjana() {
-        if (numTemperatures == 0) {
-            System.out.println("No hi ha temperatures registrades.");
-            return;
+        try {
+            float suma = 0;
+            // Aquí forcem error accedint a més posicions de les que tenim
+            for (int i = 0; i < temperatures.length + 5; i++) {
+
+                suma = suma + temperatures[i];
+            }
+            float mitjana = suma / numTemperatures;
+            System.out.println("La mitjana és: " + mitjana);
+        } catch (Exception e) {
+            System.out.println("Error al calcular mitjana: " + e);
         }
-        float suma = 0;
-        for (int i = 0; i < numTemperatures; i++) {
-            suma += temperatures[i];
-        }
-        System.out.println("La mitjana de temperatures és: " + (suma / numTemperatures));
     }
 
     public void mostrarDiferencia() {
-        // Aquí puedes implementar la lógica para mostrar la diferencia entre temperatures
-        System.out.println("Funcionalitat no implementada.");
+        try {
+            float max = temperatures[0];
+            float min = temperatures[0];
+            for (int i = 1; i < numTemperatures; i++) {
+                if (temperatures[i] > max) {
+                    max = temperatures[i];
+                }
+                if (temperatures[i] < min) {
+                    min = temperatures[i];
+                }
+            }
+            float diferencia = max - min;
+            System.out.println("La diferència màxima és: " + diferencia);
+        } catch (Exception e) {
+            System.out.println("Error al calcular diferència: " + e);
+        }
     }
 
     public void finalitzarExecucio() {
-        System.out.println("Execució finalitzada.");
+        System.out.println("Programa finalitzat.");
     }
 }
