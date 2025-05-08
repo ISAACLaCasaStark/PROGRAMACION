@@ -61,7 +61,7 @@ public class RegistreTemperatures {
     public void mostrarMitjana() {
         try {
             float suma = 0;
-            // Aquí forcem error accedint a més posicions de les que tenim
+            // Aquí forzamos el error Marina
             for (int i = 0; i < temperatures.length + 5; i++) {
 
                 suma = suma + temperatures[i];
